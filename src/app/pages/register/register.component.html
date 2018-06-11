@@ -1,0 +1,187 @@
+<div class="register">
+  <mat-card>
+    <mat-toolbar>
+      <span>Register</span>
+    </mat-toolbar>
+    <form [formGroup]="registerForm" novalidate (ngSubmit)="submit(registerForm)">
+      <img class='image' [src]="url">
+      <div class='upload-image-icon' color="primary">
+        <label for="image-upload" class="custom-file-upload">
+          <i  matTooltip="upload image" matTooltipPosition="above" class="material-icons">file_upload</i>
+        </label>
+        <input type='file' id="image-upload" (change)="uploadImage($event)" accept="image/*">
+      </div>
+
+      <div>
+        <mat-form-field class='mat-input-container'>
+        <mat-select placeholder="Role" name ="role" formControlName="roleSelected">
+        <mat-option *ngFor="let role of Roles" [value]="role.code">
+        {{role.name }}
+        </mat-option>
+        </mat-select>
+        </mat-form-field>
+        {{roleSelected}}
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input name="firstName" matInput type="text" placeholder="First Name" formControlName="name">
+          <mat-error *ngIf="registerForm.get('name').touched && registerForm.get('name').hasError('required')">
+            First Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <table class="Name" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Middle Name">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Last Name">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <mat-form-field class='mat-input-container'>
+          <input matInput [matDatepicker]="picker" placeholder="Enter your DOB">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input type="text" placeholder="Select BloodGroup" aria-label="Number" matInput formControlName="opt" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input name="Age" matInput type="number" placeholder="Age" min="18" max="60">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-radio-group>
+          Select your gender
+          <mat-radio-button value="1">Male</mat-radio-button>
+          <mat-radio-button value="2">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <table class="Address" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Sreet">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Area">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <table class="Address" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="City">
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="State">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <table class="Address" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Country">
+              </mat-form-field>
+              </td>
+              <td>
+              <mat-form-field class="example-full-width">
+                <input matInput type='number' placeholder="Pincode">
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input name="email" matInput type="email" placeholder="Email" formControlName="email">
+          <mat-error *ngIf="registerForm.get('email').hasError('pattern')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field class="example-full-width">
+          <span matPrefix>+91 &nbsp;</span>
+          <input type="tel" matInput placeholder="Mobile number">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-radio-group>
+          Donated Blood Recently?
+          <mat-radio-button value="1">Yes</mat-radio-button>
+          <mat-radio-button value="2">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div>
+        <mat-form-field class='mat-input-container'>
+          <input name="password" matInput type="password" placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <div class="error" *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('pattern')">
+          password should contain only alphabhets and numbers.
+        </div>
+        <div class="error" *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('required')">
+          password is required
+        </div>
+      </div>
+
+      <div>
+        <mat-form-field class='mat-input-container'>
+          <input name="confirmPassword" id='confirmPassword' matInput type="text" placeholder="ConfirmPassword" formControlName="confirmPassword">
+        </mat-form-field>
+        <div class="error" *ngIf="registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').hasError('MatchPassword')">
+          password didn't match
+        </div>
+      </div>
+
+      <button [ngClass]="{'register-button':registerForm.invalid}" [disabled]="registerForm.invalid" mat-raised-button color="primary">Register</button>
+    </form>
+  </mat-card>
+</div>

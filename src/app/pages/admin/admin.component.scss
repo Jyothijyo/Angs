@@ -1,0 +1,24 @@
+.sidenav-container {
+  position: absolute;
+  overflow: auto;
+  top: 70px;
+  left: 2px;
+  right: 2px;
+  bottom: 5px;
+  border: 0.1px solid;
+  border-radius: 10px;
+}
+
+.sidenav {
+  width: 200px;
+  border-right: 0.1px solid;
+}
+
+.sidenav-content {
+  padding: 10px;
+}
+
+.mat-card {
+  height: 460px;
+  margin: 5px;
+}

@@ -1,0 +1,46 @@
+.login {
+    mat-card {
+      margin: auto;
+      margin-top: 120px;
+      width: 400px;
+    }
+    mat-toolbar {
+      background: #FFFFFF;
+      border-bottom: 1px solid #DEDEDE;
+      span {
+          margin: 0 auto;
+          font-size: 24px;
+          font-weight: 700;
+      }
+    }
+    form {
+      margin: 24px 0;
+    }
+    .mat-input-container {
+      width: 100%;
+    }
+    .mat-raised-button {
+      width: 100%;
+      margin-top: 24px;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+    .login-button:hover{
+      cursor: not-allowed;
+    }
+    .mat-raised-button.mat-primary[disabled],
+    .mat-raised-button.mat-accent[disabled],
+    .mat-raised-button.mat-warn[disabled],
+    .mat-raised-button[disabled][disabled],
+    .mat-fab.mat-primary[disabled],
+    .mat-fab.mat-accent[disabled],
+    .mat-fab.mat-warn[disabled],
+    .mat-fab[disabled][disabled],
+    .mat-mini-fab.mat-primary[disabled],
+    .mat-mini-fab.mat-accent[disabled],
+    .mat-mini-fab.mat-warn[disabled],
+    .mat-mini-fab[disabled][disabled] {
+      background-color:#B71C1C;
+      color:#fff;
+    }
+}
